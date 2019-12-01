@@ -33,8 +33,13 @@ def K_Means_centr(K, data):
             for j in range(K):
             #computing the euclidean distance from the various points to the centroids
                 euc_dis[i][j] += linalg.norm(array[i]-centroids[j])
+            #list containing the cluster to which each wine belongs to
             clusters.append(np.where(euc_dis[i] == min(euc_dis[i]))[0][0]+1)
+            #dictionary that maps each cluster to the wines that belong to it
+            #e.g. {cluster1: [wine1, wine5, wine6, ...]}
             clus[clusters[i]].append(i)
+        #computing the centroids by taking the mean
+        #of the elements of the cluster
         for k in range(K):
             for j in range(m):
                 values = []
@@ -66,6 +71,8 @@ def K_Means_far(K, data):
             #dictionary that maps each cluster to the wines that belong to it
             #e.g. {cluster1: [wine1, wine5, wine6, ...]}
             clus[clusters[i]].append(i)
+        #computing the centroids by taking the mean
+        #of the elements of the cluster
         for k in range(K):
             for j in range(m):
                 values = []
